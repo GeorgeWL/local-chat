@@ -1,24 +1,24 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import uuid from "uuid";
 import MessageInput from "./components/messageInput";
 import { BroadcastChannel } from "broadcast-channel";
 import ChatWindow from "./components/chatWindow";
 import MessageStack from "./components/messageStack";
+import startCase from "lodash/startCase";
 class App extends React.Component {
   state = {
     user: {
       userId: uuid(),
       username: ""
     },
-    messageStack: []
+    messageStack: [],
+    downloadDataUri: ""
   };
   componentDidMount() {
     this.channel = new BroadcastChannel("chat-room");
     if (this.channel) {
       this.channel.addEventListener("message", msg => {
-        console.warn("msg", msg);
         this.handleMessageAdd(msg);
       });
     }
@@ -35,6 +35,7 @@ class App extends React.Component {
       id: uuid(),
       text: msgText,
       date: new Date(),
+      isQuote: false,
       ...this.state.user
     };
     this.handleMessageAdd(msg);
@@ -55,31 +56,41 @@ class App extends React.Component {
   };
 
   handleQuote = msg => {
-    console.warn("msg", msg);
+    let { user } = this.state;
+    msg = {
+      id: uuid(),
+      text: `"${msg.username}" said:  ${msg.text}`,
+      date: new Date(),
+      isQuote: true,
+      ...user
+    };
+    this.handleMessageAdd(msg);
+    this.channel.postMessage(msg);
+  };
 
-    // this.handleMessageSend()
+  handleTranscript = () => {
+    const { messageStack } = this.state;
+    const initRow = Object.keys(messageStack[0]).map(key => startCase(key));
+    const rows = [initRow.join(",")];
+    const otherRows = messageStack.map(entry =>
+      Object.values(entry).map(val => JSON.stringify(val))
+    );
+
+    console.log(rows, otherRows);
+    otherRows.forEach(row => rows.push(row));
   };
 
   render() {
-    const { user, messageStack, currentMessage } = this.state;
+    const { user, messageStack, currentMessage, downloadDataUri } = this.state;
     return (
       <div className="App">
         <header className="App-header">
           <h1>Local Chat</h1>
           <h3>
-            Open Two or More Browser Windows on the Device to Have a Localised
-            chat-room
+            Open Two or More Browser Windows/Tabs on the same device to Have a
+            localised chat-room.
+            <br /> Each tab is treated as a unique user
           </h3>
-          <div>
-            Potential Extra features:
-            <ul>
-              <li>
-                <input type="checkbox" disabled value={true}>
-                  Checked
-                </input>
-              </li>
-            </ul>
-          </div>
         </header>
         <main>
           <ChatWindow>
@@ -96,6 +107,22 @@ class App extends React.Component {
                     id="userMessage"
                     handleSend={this.handleMessageSend}
                   />
+                  {messageStack && messageStack.length > 0 && (
+                    <div className="App-transcript">
+                      <button onClick={this.handleTranscript}>
+                        Create Chat transcript
+                      </button>
+                      {downloadDataUri && (
+                        <a
+                          href={downloadDataUri}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Click To Download!
+                        </a>
+                      )}
+                    </div>
+                  )}
                 </>
               ) : (
                 <>
@@ -109,6 +136,47 @@ class App extends React.Component {
             </div>
           </ChatWindow>
         </main>
+        <footer className="App-footer">
+          Built with React.js{" "}
+          <span role="img" aria-label="coder emoji">
+            👩‍💻
+          </span>{" "}
+          and an hour or two by{" "}
+          <a
+            href="https://georgewl.dev"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            George WL
+            <span role="img" aria-label="lightning bolt emoji">
+              ⚡
+            </span>
+          </a>
+          <details>
+            <summary>potential additions for the future</summary>
+            <ul
+              style={{
+                listStyle: "circle",
+                textAlign: "left"
+              }}
+            >
+              <li>
+                Add Connection to external data storage and transform into a
+                fully network conected chat app
+              </li>
+              <li>
+                Add selector on init which asks if want Local Chat or Remote
+                chat
+              </li>
+              <li>Add possibilty to share chat by unique share id</li>
+              <li>
+                <span style={{ textDecoration: "line-through" }}>
+                  Add chat transcript feature - text file
+                </span>
+              </li>
+            </ul>
+          </details>
+        </footer>
       </div>
     );
   }

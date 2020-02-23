@@ -2,8 +2,6 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: auto;
-  max-height: 400px;
-  overflow-y: auto;
 }
 .messageItem__link {
   border: none;

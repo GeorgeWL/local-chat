@@ -1,10 +1,8 @@
 import React from "react";
 import MessageItem from "./messageItem";
+import "./messageStack.scss";
 const MessageStack = ({ messages, currentMessage, handleQuote }) => (
-  <div
-    className="messageStack"
-    style={{ display: "flex", justifyContent: "center" }}
-  >
+  <div className="messageStack">
     {messages &&
       messages.length > 0 &&
       messages.map(msg => (

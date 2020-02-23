@@ -15,10 +15,8 @@
 
 .App-header {
   display: flex;
-  font-size: calc(10px + 2vmin);
   background-color: #282c34;
   color: white;
-  min-height: 10vh;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -32,6 +30,28 @@
   margin: 10px;
 }
 
+.App-transcript{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.App-footer{
+  position: fixed;
+  bottom: 0vh;
+  background-color: #282c34;
+  color: antiquewhite;
+  width: 100vw;
+  padding: 20px;
+}
+.App-footer>a{
+  color: #61dafb;
+}
+summary{
+  opacity: .4;
+  margin: 20px;
+  cursor: pointer;
+}
 
 @keyframes App-logo-spin {
   from {
