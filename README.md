@@ -1,5 +1,10 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Built purely as an excuse to use the relatively new [BroadcastChannel API](https://developer.mozilla.org/en-US/docs/Web/API/BroadcastChannel)
+              
+using [broadcast-channel](https://npmjs.org/package/broadcast-channel) to add support for older browsers.
+</div>
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -66,3 +71,12 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `yarn build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+
+## potential additions for the future
+
+* [ ] Add Connection to external data storage (firebase) and transform into a fully network conected chat app
+* [ ]  Add selector on init which asks if want Local Chat or Remote chat
+* [ ] Add possibilty to share chat by unique share id
+* [x] Add chat transcript feature - text file
+* [ ] Add better chat transcript feature - text file
