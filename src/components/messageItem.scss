@@ -1,0 +1,17 @@
+.messageItem {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto;
+  max-height: 400px;
+  overflow-y: auto;
+}
+.messageItem__link {
+  border: none;
+  background: none;
+  color: steelblue;
+  transition: color 0.4s ease;
+  cursor: pointer;
+  &:hover {
+    color: darken(steelblue, 20%);
+  }
+}
