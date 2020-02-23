@@ -15,7 +15,7 @@
 
 .App-header {
   display: flex;
-  background-color: #282c34;
+  background-color: #424242;
   color: white;
   flex-direction: column;
   align-items: center;
@@ -34,18 +34,27 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+}
+.App-transcript>*{
+  max-width: 500px;
+  margin: 10px;
 }
 
 .App-footer{
   position: fixed;
   bottom: 0vh;
-  background-color: #282c34;
+  background-color: #424242;
   color: antiquewhite;
   width: 100vw;
   padding: 20px;
 }
 .App-footer>a{
-  color: #61dafb;
+  color: #61dafb !important;
+}
+
+details{
+  cursor: pointer;
 }
 summary{
   opacity: .4;

@@ -73,11 +73,12 @@ class App extends React.Component {
     const initRow = Object.keys(messageStack[0]).map(key => startCase(key));
     const rows = [initRow.join(",")];
     const otherRows = messageStack.map(entry =>
-      Object.values(entry).map(val => JSON.stringify(val))
+      Object.values(entry).map(val => String(val))
     );
-
-    console.log(rows, otherRows);
-    otherRows.forEach(row => rows.push(row));
+    otherRows.forEach(row => rows.push(row.join(",")));
+    const data = rows.join("\n");
+    const dataUri = "data:text/csv;charset=utf-8," + encodeURI(data);
+    this.setState({ downloadDataUri: dataUri });
   };
 
   render() {
@@ -117,6 +118,7 @@ class App extends React.Component {
                           href={downloadDataUri}
                           target="_blank"
                           rel="noopener noreferrer"
+                          download="download.csv"
                         >
                           Click To Download!
                         </a>
@@ -153,6 +155,25 @@ class App extends React.Component {
             </span>
           </a>
           <details>
+            Built purely as an excuse to use the relatively new{" "}
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://developer.mozilla.org/en-US/docs/Web/API/BroadcastChannel"
+            >
+              BroadcastChannel API
+            </a>
+            , using a npm library{" "}
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://npmjs.org/package/broadcast-channel"
+            >
+              broadcast-channel
+            </a>{" "}
+            which polyfills older browsers.
+          </details>
+          <details>
             <summary>potential additions for the future</summary>
             <ul
               style={{
@@ -174,6 +195,7 @@ class App extends React.Component {
                   Add chat transcript feature - text file
                 </span>
               </li>
+              <li>Add better chat transcript feature - text file</li>
             </ul>
           </details>
         </footer>
