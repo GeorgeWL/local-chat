@@ -95,11 +95,6 @@ class App extends React.Component {
         </header>
         <main>
           <ChatWindow>
-            <MessageStack
-              messages={messageStack}
-              currentMessage={currentMessage}
-              handleQuote={this.handleQuote}
-            />
             <div className="AppChatWindowInput">
               {user.userId && user.username ? (
                 <>
@@ -136,6 +131,11 @@ class App extends React.Component {
                 </>
               )}
             </div>
+            <MessageStack
+              messages={messageStack}
+              currentMessage={currentMessage}
+              handleQuote={this.handleQuote}
+            />
           </ChatWindow>
         </main>
         <footer className="App-footer">
