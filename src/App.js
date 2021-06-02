@@ -152,11 +152,12 @@ class App extends React.Component {
             George WL
           </a>
           <details>
-            Built purely as an excuse to use the relatively new{" "}
+            Built purely as an excuse to use the relatively new 
             <a
               target="_blank"
               rel="noopener noreferrer"
               href="https://developer.mozilla.org/en-US/docs/Web/API/BroadcastChannel"
+              style={{padding:'0 5px'}}
             >
               BroadcastChannel API
             </a>
@@ -165,9 +166,10 @@ class App extends React.Component {
               target="_blank"
               rel="noopener noreferrer"
               href="https://npmjs.org/package/broadcast-channel"
+              style={{padding:'0 5px'}}
             >
               broadcast-channel
-            </a>{" "}
+            </a>
             which polyfills older browsers.
           </details>
         </footer>
