@@ -95,11 +95,6 @@ class App extends React.Component {
         </header>
         <main>
           <ChatWindow>
-            <MessageStack
-              messages={messageStack}
-              currentMessage={currentMessage}
-              handleQuote={this.handleQuote}
-            />
             <div className="AppChatWindowInput">
               {user.userId && user.username ? (
                 <>
@@ -136,6 +131,11 @@ class App extends React.Component {
                 </>
               )}
             </div>
+            <MessageStack
+              messages={messageStack}
+              currentMessage={currentMessage}
+              handleQuote={this.handleQuote}
+            />
           </ChatWindow>
         </main>
         <footer className="App-footer">
@@ -150,16 +150,14 @@ class App extends React.Component {
             rel="noopener noreferrer"
           >
             George WL
-            <span role="img" aria-label="lightning bolt emoji">
-              ⚡
-            </span>
           </a>
           <details>
-            Built purely as an excuse to use the relatively new{" "}
+            Built purely as an excuse to use the relatively new 
             <a
               target="_blank"
               rel="noopener noreferrer"
               href="https://developer.mozilla.org/en-US/docs/Web/API/BroadcastChannel"
+              style={{padding:'0 5px'}}
             >
               BroadcastChannel API
             </a>
@@ -168,35 +166,11 @@ class App extends React.Component {
               target="_blank"
               rel="noopener noreferrer"
               href="https://npmjs.org/package/broadcast-channel"
+              style={{padding:'0 5px'}}
             >
               broadcast-channel
-            </a>{" "}
+            </a>
             which polyfills older browsers.
-          </details>
-          <details>
-            <summary>potential additions for the future</summary>
-            <ul
-              style={{
-                listStyle: "circle",
-                textAlign: "left"
-              }}
-            >
-              <li>
-                Add Connection to external data storage and transform into a
-                fully network conected chat app
-              </li>
-              <li>
-                Add selector on init which asks if want Local Chat or Remote
-                chat
-              </li>
-              <li>Add possibilty to share chat by unique share id</li>
-              <li>
-                <span style={{ textDecoration: "line-through" }}>
-                  Add chat transcript feature - text file
-                </span>
-              </li>
-              <li>Add better chat transcript feature - text file</li>
-            </ul>
           </details>
         </footer>
       </div>
