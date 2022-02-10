@@ -12,7 +12,7 @@
     "dayjs": "^1.8.20",
     "faker": "^4.1.0",
     "lodash": "^4.17.21",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-scripts": "3.4.0",
